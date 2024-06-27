@@ -124,10 +124,70 @@
 // export default Details;
 
 
+// import React from 'react';
+
+// const Details = ({ products, onDelete }) => {
+
+//   const handleDelete = (id) => {
+//     onDelete(id);
+//   };
+
+//   return (
+//     <div className="overflow-hidden border border-gray-200 rounded-lg ">
+//       <table className="min-w-full divide-y divide-gray-200">
+//         <thead className="bg-gray-50">
+//           <tr>
+//             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//               Product ID
+//             </th>
+//             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//               Product Name
+//             </th>
+//             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//               Description
+//             </th>
+//             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//               Color
+//             </th>
+//             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//               Season
+//             </th>
+//             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+//               Actions
+//             </th>
+//           </tr>
+//         </thead>
+//         <tbody className="bg-white divide-y divide-gray-200">
+//           {products.map((product) => (
+//             <tr key={product.id}>
+//               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.id}</td>
+//               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.name}</td>
+//               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.description}</td>
+//               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.color}</td>
+//               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.season}</td>
+//               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+//                 <button
+//                   onClick={() => handleDelete(product.id)}
+//                   className="text-red-600 hover:text-red-900 px-6 py-3 text-left text-xs font-medium"
+//                 >
+//                   Delete
+//                 </button>
+//               </td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+
+// export default Details;
+
+// Details.js
+
 import React from 'react';
 
-const Details = ({ products, onDelete }) => {
-
+const Details = ({ products, onDelete, onProductClick }) => {
   const handleDelete = (id) => {
     onDelete(id);
   };
@@ -161,7 +221,12 @@ const Details = ({ products, onDelete }) => {
           {products.map((product) => (
             <tr key={product.id}>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.id}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{product.name}</td>
+              <td
+                className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 cursor-pointer hover:text-blue-600"
+                onClick={() => onProductClick(product.id)}
+              >
+                {product.name}
+              </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.description}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.color}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.season}</td>
@@ -182,3 +247,5 @@ const Details = ({ products, onDelete }) => {
 };
 
 export default Details;
+
+

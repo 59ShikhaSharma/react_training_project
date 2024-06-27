@@ -109,6 +109,8 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Details from './components/Details/Details';
 import Pagination from './components/Pagination/Pagination';
+import ProductDetails from './components/ProductDetails/ProductDetails';
+
 
 const App = () => {
   const initialProducts = [
@@ -130,6 +132,8 @@ const App = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(4); // Number of products per page
+  
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   // Calculate total pages
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -146,6 +150,11 @@ const App = () => {
     setFilteredProducts(updatedProducts); // Update filtered products as well
   };
 
+  const handleProductClick = (id) => {
+    const selected = products.find((product) => product.id === id);
+    setSelectedProduct(selected);
+  };
+
   // Reset current page when filtered products change
   useEffect(() => {
     setCurrentPage(1);
@@ -156,11 +165,11 @@ const App = () => {
       <Navbar products={products} setFilteredProducts={setFilteredProducts} />
 
       <h1 className="text-2xl font-bold mb-4">Fruits List</h1>
-      <Details products={currentProducts} onDelete={handleDelete} />
-
-      {/* Render Pagination Component */}
+      <Details products={currentProducts} onDelete={handleDelete} onProductClick={handleProductClick}/>
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+      <ProductDetails product={selectedProduct} />
     </div>
+    
   );
 };
 
